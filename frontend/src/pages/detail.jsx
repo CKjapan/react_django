@@ -10,9 +10,7 @@ class Detailbody extends Component {
   //詳細移行ボタンJSX表示
   render() {
     return (
-      <React.Fragment>
-        <Link to={`/create/${this.props.id}`}>詳細ページへ</Link>
-      </React.Fragment>
+      <Link to={`/create/${this.props.id}`}>詳細ページへ</Link>
     );
   }
 }

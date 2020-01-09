@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { getcookie } from '../cookie';
+import { getcookie } from '../components/cookie_get_button';
 
 // import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 

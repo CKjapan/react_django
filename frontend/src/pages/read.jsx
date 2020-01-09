@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Deletebody from './delete';
+import Deletebody from '../components/delete_button';
 import Detailbody from './detail';
-import { getcookie } from '../cookie';
+import { getcookie } from '../components/cookie_get_button';
 
 //一覧表示処理
 class Read extends Component {

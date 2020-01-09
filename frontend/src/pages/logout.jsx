@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
-import { getcookie } from '../cookie';
+import { getcookie } from '../components/cookie_get_button';
 
 
 //logout処理

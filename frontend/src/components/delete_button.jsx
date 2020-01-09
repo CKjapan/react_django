@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getcookie } from '../cookie';
+import { getcookie } from './cookie_get_button';
 
 
 //delete処理

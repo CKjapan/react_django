@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 //cookie取得関数インポート
-import { getcookie } from './cookie';
+import { getcookie } from '../components/cookie_get_button';
 
 //ルーティングに必要なコンポーネントインポート
 import Read from './curd/read';
