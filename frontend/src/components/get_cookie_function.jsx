@@ -1,5 +1,3 @@
-// import React from "react";
-
 //cookie取得＆加工用関数
 export const getcookie = () => {
   const cookiesArray = document.cookie.split(';'); //全てのcookieを取り出して「;」で分割し配列に

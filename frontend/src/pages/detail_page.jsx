@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { getcookie } from '../components/cookie_get_button';
+import { getcookie } from '../components/get_cookie_function';
 
-// import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 //create処理
 class Create extends Component {
   constructor(props) {
     super(props);
-    //todosは登録したものを配列で保持。name等はinputbox用に用意
     this.state = {
       title: '',
       body: '',
@@ -18,7 +16,7 @@ class Create extends Component {
 
   componentDidMount = () => {
     console.log(this.props.match.params.id)
-    // API
+
   }
 
   //入力内容をinputboxに反映させる関数
@@ -31,11 +29,10 @@ class Create extends Component {
   //submitでstate更新＆データベース保存
   handleSubmit = (e) => {
     e.preventDefault();
-    //cookie取得
     const cookie = getcookie();
     //データベース保存用定数
     const data = { author: cookie[" UserId"], title: this.state.title, body: this.state.body };
-    //データベース保存処理
+    //データベース保存
     axios
       ({
         method: 'POST',
@@ -49,11 +46,8 @@ class Create extends Component {
           title: "",
           body: ""
         });
-      }).catch(err => {
-        console.log(err);
-      });
+      })
   };
-
 
   //入力フォームJSX表示
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Deletebody from '../components/delete_button';
-import Detailbody from './detail';
+import Detailbody from '../components/detail_button';
 import { getcookie } from '../components/cookie_get_button';
 
 //一覧表示処理
