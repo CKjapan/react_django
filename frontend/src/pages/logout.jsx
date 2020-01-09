@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
-import { getcookie } from '../components/cookie_get_button';
+import { getcookie } from '../components/get_cookie_function';
 
 
 //logout処理
@@ -41,7 +41,6 @@ class LogoutApp extends Component {
     }
     return (
       <div>
-        {/* < /> */}
         <form onSubmit={this.handleSubmit} >
           <button >ログアウト</button>
         </form>

@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 //cookie取得関数インポート
-import { getcookie } from '../components/get_cookie_function';
+import { getcookie } from './components/get_cookie_function';
 
 //ルーティングに必要なコンポーネントをインポート
-import Read from './curd/read';
-import Create from './curd/create';
-import LoginApp from './auth/login';
-import LogoutApp from './auth/logout';
+import Read from './pages/read';
+import Create from './pages/detail_page';
+import LoginApp from './pages/login';
+import LogoutApp from './pages/logout';
 
 //readPage
 const ReadPage = () => {

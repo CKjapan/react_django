@@ -17,13 +17,10 @@ class LoginApp extends Component {
 
   //入力内容をinputboxに反映させる関数
   handleChange = (e) => {
-    const input = e.target;
-    if (input.name === "username") {
-      this.setState({ username: e.target.value });
-    } else if (input.name === "password") {
-      this.setState({ password: e.target.value });
-    }
-  };
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
   //login処理
   handleSubmit = (e) => {
