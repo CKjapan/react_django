@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Deletebody from '../components/delete_button';
 import Detailbody from '../components/detail_button';
 import { getcookie } from '../components/get_cookie_function';
@@ -33,9 +34,7 @@ class Read extends Component {
       })
       .then(res => {
         this.setState({ datalist: res.data });
-      }).catch(err => {
-        console.log(err);
-      });
+      })
   };
 
   render() {
@@ -53,7 +52,17 @@ class Read extends Component {
     });
 
     return (
-      <ul>{list}</ul>
+      <div>
+        <Link to={`/create/new`}>新規プロジェクト作成</Link>
+        <p>標準テンプレートから作成</p>
+        <ul>
+          <li><Link to={`/template/1`}>テンプレート1</Link></li>
+          <li><Link to={`/template/2`}>テンプレート2</Link></li>
+          <li><Link to={`/template/3`}>テンプレート3</Link></li>
+        </ul>
+        <p>保存済のプロジェクトの呼び出し</p>
+        <ul>{list}</ul>
+      </div>
     );
   }
 }

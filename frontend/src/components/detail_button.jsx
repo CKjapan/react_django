@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Detailbody extends Component {
   render() {
     return (
-      <Link to={`/create/${this.props.id}`}>詳細ページへ</Link>
+      <Link to={`/detail/${this.props.id}`}>編集ページへ</Link>
     );
   }
 }

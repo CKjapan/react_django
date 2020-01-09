@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { getcookie } from '../components/get_cookie_function';
 
 
 //create処理
-class Create extends Component {
+class Template extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,11 +15,6 @@ class Create extends Component {
     };
   };
 
-  componentDidMount = () => {
-    console.log(this.props.match.params.id)
-    console.log(this.props)
-
-  }
 
   //入力内容をinputboxに反映させる関数
   handleChange = (e) => {
@@ -59,13 +55,13 @@ class Create extends Component {
          <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
           body:
          <textarea name="body" value={this.state.body} onChange={this.handleChange} />
-          <button >新規登録</button>
+          <button>保存-未実装-</button>
         </form>
-        <button>上書保存-未実装-</button>
-        <button>一覧へ戻る-未実装-</button>
+
+        <Link to={`/read`}>一覧へ戻る</Link>
       </div >
     );
   }
 }
 
-export default Create;
+export default Template;
