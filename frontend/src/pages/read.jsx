@@ -26,15 +26,17 @@ class Read extends Component {
   getdb = () => {
     const cookie = getcookie();
     axios
-      ({
-        method: 'GET',
+      ({//6f87e1c4652ea873634c09f55ddce83e68e16ad1
+        method: 'GET',//
         url: `http://127.0.0.1:8000/api/v1/?author=${cookie[" UserId"]}`,
         data: '',
-        headers: { Authorization: `Token ${cookie[" Token"]}` }
+        headers: { Authorization: `Token ${cookie["Token"]}` }
       })
       .then(res => {
         this.setState({ datalist: res.data });
-      })
+      }).catch(err => {
+        console.log('err:', err);
+      });
   };
 
   render() {

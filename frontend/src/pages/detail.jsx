@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 import { getcookie } from '../components/get_cookie_function';
 
@@ -25,7 +26,7 @@ class Detail extends Component {
         method: 'GET',
         url: `http://127.0.0.1:8000/api/v1/${textid}/`,
         data: '',
-        headers: { Authorization: `Token ${cookie[" Token"]}` }
+        headers: { Authorization: `Token ${cookie["Token"]}` }
       })
       .then(res => {
         this.setState({
@@ -55,7 +56,7 @@ class Detail extends Component {
         method: 'PUT',
         url: `http://127.0.0.1:8000/api/v1/${textid}/?author=${cookie[" UserId"]}`,
         data: data,
-        headers: { Authorization: `Token ${cookie[" Token"]}` }
+        headers: { Authorization: `Token ${cookie["Token"]}` }
       })
       .then(res => {
         this.setState({
@@ -68,15 +69,20 @@ class Detail extends Component {
   //入力フォームJSX表示
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          title:
+      <div className='create_box'>
+        <div className='form_box'>
+          <form onSubmit={this.handleSubmit}>
+            title:
          <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-          body:
-         <textarea name="body" value={this.state.body} onChange={this.handleChange} />
-          <button>上書保存</button>
-        </form>
-        <Link to={`/read`}>一覧へ戻る</Link>
+            body:
+         <input name="body" value={this.state.body} onChange={this.handleChange} />
+            {/* type="hidden"  bodyは後々隠す*/}
+            <Button type="submit"><p className='save_button'>保存</p></Button>
+          </form>
+        </div>
+        <div className='return_box'>
+          <Button><Link to={`/read`}><p className='return_button'>一覧へ戻る</p></Link></Button>
+        </div>
       </div >
     );
   }

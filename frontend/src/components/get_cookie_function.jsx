@@ -4,8 +4,9 @@ export const getcookie = () => {
   const newCookieArray = cookiesArray.map((obj) => {//さらに「=」で分割し配列に
     return (obj.split('='));
   });
+  console.log(newCookieArray);
   const cookieObj = newCookieArray.filter((obj) => {//その後、配列から必要な物だけにフィルター
-    return obj[0] === ' UserName' || obj[0] === ' UserId' || obj[0] === ' Token';
+    return obj[0] === ' UserName' || obj[0] === ' UserId' || obj[0] === 'Token';
   });
   let newCookieObj = {}//最後に配列をオブジェクトに
   cookieObj.forEach((data) => {

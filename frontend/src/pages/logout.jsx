@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import Button from '@material-ui/core/Button';
 
 import { getcookie } from '../components/get_cookie_function';
 
@@ -20,12 +21,12 @@ class LogoutApp extends Component {
       method: 'POST',
       url: 'http://127.0.0.1:8000/api/v1/rest-auth/logout/',
       data: '',
-      headers: { Authorization: `Token ${cookie[" Token"]}` }
+      headers: { Authorization: `Token ${cookie["Token"]}` }
     })
       //成功したら
       .then(res => {
         //cookieからトークン削除
-        document.cookie = 'Token=' + encodeURIComponent(cookie[" Token"]) + ';max-age=0';
+        document.cookie = 'Token=' + encodeURIComponent(cookie["Token"]) + ';max-age=0';
         document.cookie = 'UserName=' + encodeURIComponent(cookie[" UserName"]) + ';max-age=0';
         document.cookie = 'UserId=' + encodeURIComponent(cookie[" UserId"]) + ';max-age=0';
         //ログアウト状態をtrueに
@@ -42,7 +43,7 @@ class LogoutApp extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} >
-          <button >ログアウト</button>
+          <Button type="submit"><p className='logout_button'>ログアウト</p></Button>
         </form>
       </div>
     )

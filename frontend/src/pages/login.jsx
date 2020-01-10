@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import Button from '@material-ui/core/Button';
 
 
 //ログイン詳細へ
@@ -76,7 +77,7 @@ class LoginApp extends Component {
          <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
           password:
          <input name="password" type="text" value={this.state.password} onChange={this.handleChange} />
-          <button >ログイン</button>
+          <Button type="submit">ログイン</Button>
         </form>
       </div>
     );

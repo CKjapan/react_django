@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
+// import "./styles.css";
 //cookie取得関数インポート
 import { getcookie } from './components/get_cookie_function';
 
@@ -11,6 +12,10 @@ import Create from './pages/create';
 import Detail from './pages/detail';
 import LoginApp from './pages/login';
 import LogoutApp from './pages/logout';
+import { createEditor } from "./rete/rete";
+
+
+
 
 //readPage
 const ReadPage = () => {
@@ -25,10 +30,19 @@ const ReadPage = () => {
 //templatePage
 const TemplatePage = (props) => {
   return (
-    <div>テンプレートから作成ページ
-     <LogoutApp />
-      <Template {...props} />
-      {/* <Rete/> */}
+    <div>
+      <div className='header'>
+        {/* <h1>テンプレートから作成ページ</h1> */}
+        <Template {...props} />
+        <LogoutApp />
+      </div>
+      <div className="main">
+        <div className="dock_title"><h1>Dock</h1></div>
+        <div className="dock"></div>
+        <div>
+          <Rete />
+        </div>
+      </div>
     </div>
   );
 }
@@ -36,10 +50,19 @@ const TemplatePage = (props) => {
 //createPage
 const CreatePage = () => {
   return (
-    <div>新規作成ページ
-     <LogoutApp />
-      <Create />
-      {/* <Rete/> */}
+    <div>
+      <div className='header'>
+        {/* <h1>テンプレートから作成ページ</h1> */}
+        <Create />
+        <LogoutApp />
+      </div>
+      <div className="main">
+        <div className="dock_title"><h1>Dock</h1></div>
+        <div className="dock"></div>
+        <div>
+          <Rete />
+        </div>
+      </div>
     </div>
   );
 }
@@ -47,10 +70,19 @@ const CreatePage = () => {
 //detailPage
 const DetailPage = (props) => {
   return (
-    <div>保存済のプロジェクトの編集ページ
-     <LogoutApp />
-      <Detail {...props} />
-      {/* <Rete/> */}
+    <div>
+      <div className='header'>
+        {/* <h1>テンプレートから作成ページ</h1> */}
+        <Detail {...props} />
+        <LogoutApp />
+      </div>
+      <div className="main">
+        <div className="dock_title"><h1>Dock</h1></div>
+        <div className="dock"></div>
+        <div>
+          <Rete />
+        </div>
+      </div>
     </div>
   );
 }
@@ -112,6 +144,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )} />
   )
 }
+
+//Rete表示
+function Rete() {
+  return (
+    <div className="ReteApp">
+      <div
+        style={{ width: "100vw", height: "100vh" }}
+        ref={ref => ref && createEditor(ref)}
+      />
+    </div>
+  );
+}
+
 
 
 export default App;
