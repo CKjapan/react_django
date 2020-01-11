@@ -41,7 +41,7 @@ class LogoutApp extends Component {
       return <Redirect to="/login" />;
     }
     return (
-      <div>
+      <div className='logout_box'>
         <form onSubmit={this.handleSubmit} >
           <Button type="submit"><p className='logout_button'>ログアウト</p></Button>
         </form>

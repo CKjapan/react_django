@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+// import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import { getcookie } from './get_cookie_function';
 
 
@@ -24,7 +28,13 @@ class Deletebody extends Component {
 
   render() {
     return (
-      <button onClick={this.handleSubmit}>削除</button>
+      <div>
+        {/* <Button onClick={this.handleSubmit}>削除</Button> */}
+
+        <IconButton aria-label="delete" onClick={this.handleSubmit}>
+          <DeleteIcon />
+        </IconButton>
+      </div>
     );
   }
 }

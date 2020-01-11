@@ -20,8 +20,8 @@ import { createEditor } from "./rete/rete";
 //readPage
 const ReadPage = () => {
   return (
-    <div>一覧ページ
-     <LogoutApp />
+    <div>
+      <LogoutApp />
       <Read />
     </div>
   )

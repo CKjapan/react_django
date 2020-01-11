@@ -14,26 +14,44 @@ body{
 
 }
   
+/*  start    ヘッダー */
 .header{
   background-color:#444444;
   color: #FBFBFB;
   height: 50px;
   width: 100vw;
-  /* height: 10%; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   position: fixed;
   top:0;
   left: 200px;
-
 }
-
 .header h1{
   font-size: 18px;
   margin: 0;
 }
+ .logout_box{
+   height: 50px;
+   background-color:#444444;
+ }
+/* end    ヘッダー */
 
-/* create_box */
+/* start    リスト */
+.create_list{
+  list-style: none;
+  font-size: 16px;
+  margin: 0;
+  
+}a{
+color: #444444;
+text-decoration: none;
+}
+
+/* end    リスト */
+
+
+
+/* start    create_box */
 .create_box{
   display: flex;
 }
@@ -47,7 +65,7 @@ body{
 }.logout_button{
       color: #FBFBFB; 
 }
-
+/* end     create_box*/
 
 
 .node .control input, .node .input-control input {
