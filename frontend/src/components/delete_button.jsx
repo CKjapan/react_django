@@ -32,7 +32,7 @@ class Deletebody extends Component {
         {/* <Button onClick={this.handleSubmit}>削除</Button> */}
 
         <IconButton aria-label="delete" onClick={this.handleSubmit}>
-          <DeleteIcon />
+          <DeleteIcon style={{ fontSize: 18 }} />
         </IconButton>
       </div>
     );

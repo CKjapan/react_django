@@ -21,7 +21,7 @@ body{
   height: 50px;
   width: 100vw;
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   position: fixed;
   top:0;
   left: 200px;
@@ -31,30 +31,73 @@ body{
   margin: 0;
 }
  .logout_box{
+   position: fixed;
+   /* width: 100vw; */
+
+    top: 0;
+    right: 0;
    height: 50px;
    background-color:#444444;
+     display: flex;
+     justify-content: flex-end;
+     
+     align-items: center;
  }
+
+
 /* end    ヘッダー */
+
 
 /* start    リスト */
 .create_list{
+  display: flex;
+  align-items: center;
   list-style: none;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
-  
 }a{
-color: #444444;
-text-decoration: none;
+  color: #444444;
+  text-decoration: none;
 }
+ul{
+  padding-left: 16px;
+}.create_list button{
+  padding: 4px;
+}
+
 
 /* end    リスト */
 
 
-
-/* start    create_box */
+/* start    read_box */
+.read_box{
+  display: flex;
+     position: fixed;
+   /* width: 100vw; */
+    top: 50px;
+}
 .create_box{
   display: flex;
 }
+.create_list_box{
+  height: 100vh;
+  width: 184px;
+  padding: 8px;
+  background-color: #444444;
+}.create_list_box a{
+  color: #FBFBFB;
+}.create_list_box p{
+  font-size: 14px;
+}
+.detail_list_box{
+  margin: 8px;
+}.detail_list_box p{
+  font-size: 14px;
+}
+/* end    read_box */
+
+
+/* start    create_box */
 .form_box{
   display: inline-flex;
 }
@@ -71,8 +114,6 @@ text-decoration: none;
 .node .control input, .node .input-control input {
   width: 140px;
 }
-
-
 
 /* 入力ボックス */
 select, input {
@@ -238,3 +279,22 @@ input[type="number"]::-webkit-inner-spin-button {
    }
 
 
+
+/* start    login_page */
+/* box全体の位置 */
+.MuiContainer-root.MuiContainer-maxWidthXs{
+  padding-top: 64px;
+}
+
+/* アイコンを中央に */
+.loginlogo{
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* loginの文字を中央に */
+.MuiTypography-root.MuiTypography-h5{
+  text-align: center;
+}
+/* end    login_page */

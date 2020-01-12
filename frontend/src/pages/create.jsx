@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 
 import { getcookie } from '../components/get_cookie_function';
 
+// import { createEditor } from '../rete/rete';
+
 
 //create処理
 class Create extends Component {
@@ -15,6 +17,7 @@ class Create extends Component {
       body: '',
     };
   };
+
 
   //入力内容をinputboxに反映させる関数
   handleChange = (e) => {
@@ -52,9 +55,9 @@ class Create extends Component {
       <div className='create_box'>
         <div className='form_box'>
           <form onSubmit={this.handleSubmit}>
-            title:
+            Title：
          <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-            body:
+            bodyー後々消すー:
          <input name="body" value={this.state.body} onChange={this.handleChange} />
             {/* type="hidden"  bodyは後々隠す*/}
             <Button type="submit"><p className='save_button'>保存</p></Button>
@@ -65,7 +68,18 @@ class Create extends Component {
         </div>
       </div >
     );
+
+
+
+
+
+
   }
+
+
+
+
 }
 
 export default Create;
+

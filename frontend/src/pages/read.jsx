@@ -43,28 +43,35 @@ class Read extends Component {
     //全リスト表示は一旦変数に格納
     const list = this.state.datalist.map((datalist) => {
       return (
-        <li className='create_list' key={datalist.id}>
-          <Link to={`/detail/${datalist.id}`}>{datalist.title}</Link>
-          <Deletebody id={datalist.id} getdb={this.getdb} />
-        </li>
+        <tr className='create_list' key={datalist.id}>
+          <td>
+            <Deletebody id={datalist.id} getdb={this.getdb} />
+          </td>
+          <td>
+            <Link to={`/detail/${datalist.id}`}>{datalist.title}</Link>
+          </td>
+        </tr>
       );
     });
 
     return (
-      <div>
-        <p>新規プロジェクトから作成</p>
-        <ul><li className='create_list'><Link to={`/create/new`}>作成</Link></li></ul>
+      <div className='read_box'>
+        <div className='create_list_box'>
+          <p>新規プロジェクトから作成</p>
+          <ul><li className='create_list'><Link to={`/create/new`}>作成</Link></li></ul>
 
-        <p>標準テンプレートから作成</p>
-        <ul>
-          <li className='create_list'><Link to={`/template/1`}>テンプレート1</Link></li>
-          <li className='create_list'><Link to={`/template/2`}>テンプレート2</Link></li>
-          <li className='create_list'><Link to={`/template/3`}>テンプレート3</Link></li>
-        </ul>
+          <p>標準テンプレートから作成</p>
+          <ul>
+            <li className='create_list'><Link to={`/template/1`}>テンプレート1</Link></li>
+            <li className='create_list'><Link to={`/template/2`}>テンプレート2</Link></li>
+            <li className='create_list'><Link to={`/template/3`}>テンプレート3</Link></li>
+          </ul>
+        </div>
 
-        <p>保存済のプロジェクトの呼び出し</p>
-        <ul>{list}</ul>
-
+        <div className='detail_list_box'>
+          <p>保存済のプロジェクトの呼び出し</p>
+          <table><tbody>{list}</tbody></table>
+        </div>
       </div>
     );
   }

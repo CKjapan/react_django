@@ -8,6 +8,9 @@ import DockPlugin from 'rete-dock-plugin';
 import CommentPlugin from 'rete-comment-plugin';
 // import ContextMenuPlugin from 'rete-context-menu-plugin';
 
+
+
+
 var numSocket = new Rete.Socket("Number value");
 
 //インプット欄作成
@@ -172,6 +175,7 @@ class MultiComponent extends Rete.Component {
 export async function createEditor(container) {
   var components = [new NumComponent(), new AddComponent(), new MultiComponent()];
 
+
   //　プラグインの設定
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);
@@ -227,44 +231,45 @@ export async function createEditor(container) {
   editor.connect(n3.outputs.get("num"), add.inputs.get("num3"));
 
   //keysownEvents
+
   editor.on(
     "keydown",
     async (e) => {
       if (e.code === "Backspace" || e.code === "Delete") {//deleteNode
         editor.selected.each(n => editor.removeNode(n));
       } else if (e.code === "KeyS") {//Json保存
-        await engine.abort();
+        // await engine.abort();
         await engine.process(editor.toJSON());
         const data = await editor.toJSON();
         localStorage.setItem('json', JSON.stringify(data));
         console.log(data);
       } else if (e.code === "KeyR") {//Json取得及び読み込み
         var json = localStorage.getItem('json');
-        console.log(json);
+        // console.log(json);
         json = JSON.parse(json);
-        console.log(json);
+        // console.log(json);
         await editor.fromJSON(json);
       }
     }
   );
 
-  // Jsonへの出力。これがないと適時自動計算してくれない。。。
+
+  //Jsonへの出力。これがないと適時自動計算してくれない。。。
   editor.on(
     "process nodecreated noderemoved connectioncreated connectionremoved",
     async () => {
-      console.log("process");
+      // console.log("process");
+      // await engine.abort();
+      await engine.abort();
       await engine.process(editor.toJSON());
+
     }
   );
 
   editor.view.resize();
   editor.trigger("process");
   AreaPlugin.zoomAt(editor, editor.nodes);
-
 }
-
-
-
 
 
 

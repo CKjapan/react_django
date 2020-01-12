@@ -72,12 +72,12 @@ class Detail extends Component {
       <div className='create_box'>
         <div className='form_box'>
           <form onSubmit={this.handleSubmit}>
-            title:
+            Title：
          <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-            body:
+            bodyー後々消すー:
          <input name="body" value={this.state.body} onChange={this.handleChange} />
             {/* type="hidden"  bodyは後々隠す*/}
-            <Button type="submit"><p className='save_button'>保存</p></Button>
+            <Button type="submit"><p className='save_button'>上書</p></Button>
           </form>
         </div>
         <div className='return_box'>

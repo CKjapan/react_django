@@ -15,15 +15,18 @@ import LogoutApp from './pages/logout';
 import { createEditor } from "./rete/rete";
 
 
-
-
 //readPage
 const ReadPage = () => {
   return (
     <div>
-      <LogoutApp />
-      <Read />
-    </div>
+      <div className='header'>
+        <LogoutApp />
+      </div>
+      <div className="main">
+        <div className="dock_title"><h1>DashBoard</h1></div>
+        <Read />
+      </div >
+    </div >
   )
 }
 
@@ -117,8 +120,8 @@ const App = () => {
           <Switch>
             <Route exact path="/login" component={LoginApp} />
             <Route exact path="/" render={props => isAuthenticated
-              ? (<Redirect to="/logout" />)
-              : (<Redirect to="/read" />)
+              ? (<Redirect to="/read" />)
+              : (<Redirect to="/login" />)
             } />
 
             <PrivateRoute exact path="/template/:id" component={TemplatePage} />
