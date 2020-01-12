@@ -13,6 +13,7 @@ import Detail from './pages/detail';
 import LoginApp from './pages/login';
 import LogoutApp from './pages/logout';
 import { createEditor } from "./rete/rete";
+import SignUp from './pages/signup';
 
 
 //readPage
@@ -118,6 +119,7 @@ const App = () => {
         <div>
 
           <Switch>
+            <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={LoginApp} />
             <Route exact path="/" render={props => isAuthenticated
               ? (<Redirect to="/read" />)

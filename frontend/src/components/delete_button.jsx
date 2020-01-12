@@ -8,7 +8,7 @@ import { getcookie } from './get_cookie_function';
 
 
 //delete処理
-class Deletebody extends Component {
+class DeleteButton extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +30,6 @@ class Deletebody extends Component {
     return (
       <div>
         {/* <Button onClick={this.handleSubmit}>削除</Button> */}
-
         <IconButton aria-label="delete" onClick={this.handleSubmit}>
           <DeleteIcon style={{ fontSize: 18 }} />
         </IconButton>
@@ -39,4 +38,4 @@ class Deletebody extends Component {
   }
 }
 
-export default Deletebody;
+export default DeleteButton;

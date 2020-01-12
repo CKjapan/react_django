@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 
 import { getcookie } from '../components/get_cookie_function';
 
-// import { createEditor } from '../rete/rete';
-
 
 //create処理
 class Create extends Component {
@@ -19,7 +17,6 @@ class Create extends Component {
   };
 
 
-  //入力内容をinputboxに反映させる関数
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -49,7 +46,7 @@ class Create extends Component {
       })
   };
 
-  //入力フォームJSX表示
+
   render() {
     return (
       <div className='create_box'>
@@ -68,12 +65,6 @@ class Create extends Component {
         </div>
       </div >
     );
-
-
-
-
-
-
   }
 
 

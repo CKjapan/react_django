@@ -43,6 +43,7 @@ class NumControl extends Rete.Control {
         this.emitter.trigger("process");
       }
     };
+
   }
 
   setValue(val) {
@@ -253,22 +254,20 @@ export async function createEditor(container) {
     }
   );
 
-
   //Jsonへの出力。これがないと適時自動計算してくれない。。。
   editor.on(
     "process nodecreated noderemoved connectioncreated connectionremoved",
     async () => {
       // console.log("process");
-      // await engine.abort();
       await engine.abort();
       await engine.process(editor.toJSON());
-
     }
   );
 
   editor.view.resize();
   editor.trigger("process");
   AreaPlugin.zoomAt(editor, editor.nodes);
+
 }
 
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Deletebody from '../components/delete_button';
+import DeleteButton from '../components/delete_button';
 // import Detailbody from '../components/detail_button';
 import { getcookie } from '../components/get_cookie_function';
+import DetailButton from '../components/detail_button';
+
 
 //一覧表示処理
 class Read extends Component {
@@ -45,10 +47,13 @@ class Read extends Component {
       return (
         <tr className='create_list' key={datalist.id}>
           <td>
-            <Deletebody id={datalist.id} getdb={this.getdb} />
+            <DetailButton id={datalist.id} />
           </td>
           <td>
-            <Link to={`/detail/${datalist.id}`}>{datalist.title}</Link>
+            <DeleteButton id={datalist.id} getdb={this.getdb} />
+          </td>
+          <td>
+            {datalist.title}
           </td>
         </tr>
       );
