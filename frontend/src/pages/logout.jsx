@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 import { getcookie } from '../components/get_cookie_function';
 
@@ -10,6 +15,7 @@ import { getcookie } from '../components/get_cookie_function';
 class LogoutApp extends Component {
   state = {
     logout: false,
+    anchorEl: null
   };
 
   handleSubmit = (e) => {
@@ -34,6 +40,19 @@ class LogoutApp extends Component {
       })
   };
 
+  //popupmenu
+  handleMenu = e => {
+    e.preventDefault();
+    // setAnchorEl(event.currentTarget);
+    this.setState({ anchorEl: e.currentTarget });
+  };
+
+  handleClose = () => {
+    // setAnchorEl(null);
+    this.setState({ anchorEl: null });
+  };
+
+
   //ログアウトボタンJSX表示
   render() {
     // もしログアウト状態ならログインページへ飛ばす
@@ -42,9 +61,29 @@ class LogoutApp extends Component {
     }
     return (
       <div className='logout_box'>
-        <form onSubmit={this.handleSubmit} >
-          <Button type="submit"><p className='logout_button'>ログアウト</p></Button>
-        </form>
+
+        <div>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={this.handleMenu}
+            color="inherit"
+          >
+            <AccountCircle style={{ fontSize: 45 }} />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={this.state.anchorEl}
+            keepMounted
+            open={Boolean(this.state.anchorEl)}
+            onClose={this.handleClose}
+          >
+            <MenuItem type="submit" onClick={this.handleSubmit}>Logout</MenuItem>
+            <MenuItem onClick={this.handleClose}>My account</MenuItem>
+          </Menu>
+        </div>
+
       </div>
     )
   }

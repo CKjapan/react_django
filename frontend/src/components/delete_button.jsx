@@ -3,6 +3,7 @@ import axios from 'axios';
 // import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { getcookie } from './get_cookie_function';
 
@@ -30,9 +31,11 @@ class DeleteButton extends Component {
     return (
       <div>
         {/* <Button onClick={this.handleSubmit}>削除</Button> */}
-        <IconButton aria-label="delete" onClick={this.handleSubmit}>
-          <DeleteIcon style={{ fontSize: 18 }} />
-        </IconButton>
+        <Tooltip title="Delete" arrow>
+          <IconButton aria-label="Delete" onClick={this.handleSubmit}>
+            <DeleteIcon style={{ fontSize: 24 }} color="secondary" />
+          </IconButton>
+        </Tooltip>
       </div>
     );
   }

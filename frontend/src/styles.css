@@ -1,6 +1,8 @@
+/* start  全体 */
 html{
   height: 100vh;
   width: 100vw;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .App{
@@ -11,167 +13,254 @@ html{
 body{
   height: 100%;
   margin: 0;
-
 }
-  
-/*  start    ヘッダー */
+/* end   全体 */
+
+/*  start  ヘッダー */
 .header{
   background-color:#444444;
-  color: #FBFBFB;
-  height: 50px;
+  height: 70px;
   width: 100vw;
   display: flex;
   align-items: center;
   position: fixed;
   top:0;
-  left: 200px;
+  background-color: #FBFBFB;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
 }
-.header h1{
-  font-size: 18px;
-  margin: 0;
+.logo_box{
+  width: 200px;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
 }
- .logout_box{
-   position: fixed;
-   /* width: 100vw; */
 
-    top: 0;
-    right: 0;
-   height: 50px;
-   background-color:#444444;
-     display: flex;
-     justify-content: flex-end;
-     
-     align-items: center;
- }
+.logout_box{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
 
-
-/* end    ヘッダー */
+.MuiInputBase-input.MuiInput-input{
+ border-radius: 0;
+}
+/* end   ヘッダー */
 
 
-/* start    リスト */
+/* start   リスト */
 .create_list{
   display: flex;
   align-items: center;
   list-style: none;
-  font-size: 14px;
-  margin: 0;
+  height: 36px;
+  font-weight: 500;
+  margin: 12px;
+  background-color: #FBFBFB;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }a{
   color: #444444;
   text-decoration: none;
 }
+
 ul{
   padding-left: 16px;
 }.create_list button{
   padding: 4px;
 }
 
-
-/* end    リスト */
+.create_list_box button{
+  margin: 5px;
+  width: 170px;
+}
+/* end   リスト */
 
 
 /* start    read_box */
 .read_box{
   display: flex;
-     position: fixed;
-   /* width: 100vw; */
-    top: 50px;
+  position: fixed;
+  top: 70px;
 }
+.read_box p{
+padding-left: 12px;
+}
+
 .create_box{
   display: flex;
 }
+
 .create_list_box{
   height: 100vh;
   width: 184px;
   padding: 8px;
   background-color: #444444;
-}.create_list_box a{
+}
+.create_list_box a{
   color: #FBFBFB;
-}.create_list_box p{
+}
+.create_list_box p{
   font-size: 14px;
+  color: #FBFBFB;
 }
 .detail_list_box{
-  margin: 8px;
-}.detail_list_box p{
+  padding: 8px;
+  width: 100vw;
+  background-color: #dfe6e9;
+}
+.detail_list_box p{
   font-size: 14px;
 }
+.detail_list_box a{
+  padding-left: 14px;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.template_button{
+  background-color:#bdc3c7;
+  color: #FBFBFB;
+}
 /* end    read_box */
-
 
 /* start    create_box */
 .form_box{
   display: inline-flex;
 }
-.save_button{
-   color: #FBFBFB;
-}.return_button{
-    color: #FBFBFB; 
-}.logout_button{
-      color: #FBFBFB; 
-}
 /* end     create_box*/
 
 
+/* start   rete.js */
+
+/* 数字BOX */
+.node.数字{
+  background-color:#e74c3c;
+  border: 2px solid #e74c3c;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+}
+.node.数字 input{
+  border: 2px solid #e74c3c;
+  background-color: #c0392b;
+  color: #FBFBFB;
+}
+.node.数字 .socket.output.number-value{
+  background-color:#e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.node.数字:hover,.node.selected.数字{
+  background-color: #c0392b;
+  border: 2px solid #c0392b;
+}
+.node.数字:hover.node.数字 input,.node.selected.数字 input{
+  border: 2px solid #e74c3c;
+  background-color: #e74c3c;
+}
+.node.数字:hover.node.数字 .socket.output.number-value,.node.selected.数字 .socket.output.number-value{
+    background-color:#c0392b;
+  border: 1px solid #c0392b;
+}
+
+
+/* 掛け算BOX */
+.node.掛け算{
+  background-color:#f1c40f;
+  border: 2px solid #f1c40f;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+}
+.node.掛け算 input{
+  border: 2px solid #f1c40f;
+  background-color: #f39c12;
+  color: #FBFBFB;
+}
+.node.掛け算 .socket.input.number-value,.node.掛け算 .socket.output.number-value{
+  background-color:#f1c40f;
+  border: 1px solid #f1c40f;
+}
+
+.node.掛け算:hover,.node.掛け算selected,.node.掛け算selected:hover{
+  background-color:#f39c12;
+  border: 2px solid #f39c12;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+}
+.node.掛け算:hover.node.掛け算 input,.node.掛け算selected input{
+  border: 2px solid #f39c12;
+  background-color: #f1c40f;
+  color: #FBFBFB;
+}
+.node.掛け算:hover.node.掛け算 .socket.input.number-value,
+.node.掛け算:hover.node.掛け算 .socket.output.number-value,
+.node.掛け算selected .socket.input.number-value,
+.node.掛け算selected .socket.output.number-value{
+  background-color:#f39c12;
+  border: 1px solid #f39c12;
+}
+
+/* 合計BOX */
+ .node.合計{
+  background-color:#3498db;
+  border: 2px solid #3498db;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+ }
+.node.合計 input{
+  border: 2px solid #3498db;
+  background-color: #2980b9;
+  color: #FBFBFB;
+}
+.node.合計 .socket.input.number-value,.node.合計 .socket.output.number-value{
+  background-color:#3498db;
+  border: 1px solid #3498db;
+}
+
+.node.合計:hover,.node.合計selected,.node.合計selected:hover{
+  background-color:#2980b9;
+  border: 2px solid #2980b9;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.12), 0px 1px 5px 0px rgba(0,0,0,0.10);
+}
+.node.合計:hover.node.合計 input,.node.合計selected input{
+  border: 2px solid #2980b9;
+  background-color: #3498db;
+  color: #FBFBFB; 
+}
+.node.合計:hover.node.合計 .socket.input.number-value,
+.node.合計:hover.node.合計 .socket.output.number-value,
+.node.合計selected .socket.input.number-value,
+.node.合計selected .socket.output.number-value{
+  background-color:#2980b9;
+  border: 1px solid #2980b9;
+}
+
 .node .control input, .node .input-control input {
   width: 140px;
+}
+
+/* 文字 */
+.node.数字 div,.node.selected.数字 div,.node.掛け算 div,.node.掛け算selected div,.node.合計 div,.node.合計selected div{
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+
 }
 
 /* 入力ボックス */
 select, input {
   width: 100%;
   border-radius: 30px;
-  background-color: #FBFBFB;
   padding: 2px 6px;
-  border: 1px solid #444444;
   font-size: 110%;
   width: 170px;
 }
   
-/* node */
-.node{
-  background-color:#9DA5A2;
-  border: 2px solid #444444;
-}
-
-/* nodeホバー時 */
-.node:hover {
-  background: #E0E4D6;
-}
-
-/* node選択時黄色 */
-.node.selected {
-  background: #60CAAD;
-  border-color: #444444;
-}
-
-.node .title {
-  color: #FBFBFB;
-  font-family: "MS PGothic", "Osaka", Arial, sans-serif;
-  /* font-weight: bold; */
-}
-
-.title{
-  padding: 0px;
-}
-
-
 /* 線 */
 .connection .main-path {
   fill: none;
   stroke-width: 5px;
-  stroke: #60CAAD; }
-
-
-/* .container {
-  flex: 1;
-  overflow: hidden;
-
+  stroke: #bdc3c7; 
 }
-.editor {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  height: 10px;
-} */
+
 
 .main{
   display: flex;
@@ -179,45 +268,30 @@ select, input {
   max-width: 100vw;
 }
 
+
 .dock_title{
-    position: fixed;
-    top: 0;
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
   height: 50px;
-    background-color:#444444;
-    text-align: center;
-    color: #FBFBFB;
-
+  background-color:#444444;
+  text-align: center;
+  color: #FBFBFB;
 }
 
-.dock_title h1{
-  margin: 0;
-
-}
-
-  
 .dock {
   position: fixed;
-  top: 50px;
+  top: 70px;
   height: 100vh;
   width: 180px;
   padding: 10px;
   background-color:#444444;
 }
 
-.ReteApp{
-      position: fixed;
-    top: 50px;
-  left: 200px;
-  /* width: 100vw; */
-}
-  
 .dock-item {
-  display: inline-block;
-  vertical-align: top;
   transform: scale(0.8);
   transform-origin: 50% 0;
   opacity: 0.7;
@@ -226,20 +300,14 @@ select, input {
 .dock-item:hover {
   opacity: 0.9;
 }
-  
 
-
-
-/* ? */
-.socket.multiple {
-  border-color: red;
-  
+.ReteApp{
+  position: fixed;
+  top: 70px;
+  left: 200px;
+  width: 100vw;
 }
-
-.plus{
-  font-size: 24px;
-}
-
+  
 /* 数値の増減ボタンを削除 */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -250,19 +318,19 @@ input[type="number"]::-webkit-inner-spin-button {
 /* コメント */
 .inline-comment, .frame-comment {
   color: black;
-  font-family: "MS PGothic", "Osaka", Arial, sans-serif;
+  /* font-family: "Roboto", "Helvetica", "Arial", sans-serif; */
   padding: 12px;
   position: absolute;
   cursor: move;
-  /* border: 2px solid #444444; */
-  border-radius: 16px; }
-  .inline-comment:focus, .frame-comment:focus {
-    /* outline: none; */
-    background: #60CAAD;
-  border: 3px solid #9DA5A2;
-     }
+  border-radius: 16px; 
+}
 
-     .inline-comment, .frame-comment:hover {
+.inline-comment:focus, .frame-comment:focus {
+  background: #60CAAD;
+  border: 3px solid #9DA5A2;
+}
+
+.inline-comment, .frame-comment:hover {
   background: #E0E4D6;
 }
 
@@ -270,14 +338,30 @@ input[type="number"]::-webkit-inner-spin-button {
   z-index: 4;
   border: 3px solid #444444;
   background: #9DA5A2;
-   }
+}
 
 .frame-comment {
   z-index: -10;
   border: 3px solid #444444;
   background: #9DA5A2;
-   }
+}
 
+   /* start    minimap */
+.minimap.middle{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  left: 24px;
+  bottom: 24px;
+  /* padding: 20px; */
+  padding: 0;
+  background: rgba(89, 132, 152, 0.1);
+  overflow: hidden;
+  border: 1px solid #b1b7ff;
+  border-radius: 8px;
+}
 
 
 /* start    login_page */
@@ -286,12 +370,14 @@ input[type="number"]::-webkit-inner-spin-button {
   padding-top: 64px;
 }
 
+
 /* アイコンを中央に */
-.loginlogo{
+.lockoutlogo{
   display: flex;
   justify-content: center;
   padding: 8px;
 }
+
 
 /* loginの文字を中央に */
 .MuiTypography-root.MuiTypography-h5{

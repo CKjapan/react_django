@@ -13,7 +13,7 @@ import Detail from './pages/detail';
 import LoginApp from './pages/login';
 import LogoutApp from './pages/logout';
 import { createEditor } from "./rete/rete";
-import SignUp from './pages/signup';
+import SignupApp from './pages/signup';
 
 
 //readPage
@@ -21,10 +21,11 @@ const ReadPage = () => {
   return (
     <div>
       <div className='header'>
+        <div className='logo_box'>Logo</div>
         <LogoutApp />
       </div>
       <div className="main">
-        <div className="dock_title"><h1>DashBoard</h1></div>
+        {/* <div className="dock_title"><h1>DashBoard</h1></div> */}
         <Read />
       </div >
     </div >
@@ -36,12 +37,13 @@ const TemplatePage = (props) => {
   return (
     <div>
       <div className='header'>
+        <div className='logo_box'>Logo</div>
         {/* <h1>テンプレートから作成ページ</h1> */}
         <Template {...props} />
         <LogoutApp />
       </div>
       <div className="main">
-        <div className="dock_title"><h1>Dock</h1></div>
+        {/* <div className="dock_title"><h1>Dock</h1></div> */}
         <div className="dock"></div>
         <div>
           <Rete />
@@ -56,12 +58,12 @@ const CreatePage = () => {
   return (
     <div>
       <div className='header'>
-        {/* <h1>テンプレートから作成ページ</h1> */}
+        <div className='logo_box'>Logo</div>
         <Create />
         <LogoutApp />
       </div>
       <div className="main">
-        <div className="dock_title"><h1>Dock</h1></div>
+        {/* <div className="dock_title"><h1>Dock</h1></div> */}
         <div className="dock"></div>
         <div>
           <Rete />
@@ -76,12 +78,13 @@ const DetailPage = (props) => {
   return (
     <div>
       <div className='header'>
+        <div className='logo_box'>Logo</div>
         {/* <h1>テンプレートから作成ページ</h1> */}
         <Detail {...props} />
         <LogoutApp />
       </div>
       <div className="main">
-        <div className="dock_title"><h1>Dock</h1></div>
+        {/* <div className="dock_title"><h1>Dock</h1></div> */}
         <div className="dock"></div>
         <div>
           <Rete />
@@ -108,18 +111,10 @@ const App = () => {
       {/* <p>{`isAuthenticated: ${isAuthenticated}`}</p> */}
 
       <Router>
-        {/* <div>
-          <ul>
-            <li><Link to="/create/new">Create</Link></li>
-            <li><Link to="/read">Reads</Link></li>
-          </ul>
-          <p>↑線より上は管理用（将来消す）↑</p>
-          <hr />
-        </div> */}
         <div>
 
           <Switch>
-            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signup" component={SignupApp} />
             <Route exact path="/login" component={LoginApp} />
             <Route exact path="/" render={props => isAuthenticated
               ? (<Redirect to="/read" />)
@@ -151,7 +146,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 }
 
 //Rete表示
-function Rete() {
+export function Rete() {
   return (
     <div className="ReteApp">
       <div
@@ -161,6 +156,7 @@ function Rete() {
     </div>
   );
 }
+
 
 
 

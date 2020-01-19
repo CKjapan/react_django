@@ -1,11 +1,11 @@
-// import React from 'react';
+import React, { Component } from 'react';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -14,8 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import axios from 'axios';
-import { Redirect } from 'react-router';
-import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { getcookie } from '../components/get_cookie_function';
 
 
 function Copyright() {
@@ -43,6 +43,14 @@ class LoginApp extends Component {
     }
   }
 
+  //ページ開いた時のログイン状態チェック
+  componentDidMount = () => {
+    const cookie = getcookie();
+    if (typeof cookie["Token"] !== "undefined") {
+      this.setState({ login: true });
+    }
+  }
+
   //入力内容をinputboxに反映させる関数
   handleChange = (e) => {
     this.setState({
@@ -63,32 +71,21 @@ class LoginApp extends Component {
         document.cookie = 'Token=' + encodeURIComponent(res.data.key);
         //GETでリクエスト
         axios
-          .get('http://127.0.0.1:8000/api/v1/users/', {
+          //成功したらid取得
+          .get('http://127.0.0.1:8000/api/v1/rest-auth/user/', {
             headers: { Authorization: `Token ${res.data.key}` }
           })
-          //成功したらid取得
           .then(res => {
-            const resdata = res.data;
-            const fildata = resdata.filter((obj) => {
-              return obj.username === data.username;
-            });
             //無事GET出来たらusername,idをcookieへ保存
-            document.cookie = `UserId=` + encodeURIComponent(fildata[0].id);
-            document.cookie = `UserName=` + encodeURIComponent(fildata[0].username);
-            //最後にinputboxを空に&ログイン状態をtrueに
-            this.setState({
-              username: '',
-              email: '',
-              password: '',
-              login: true
-            });
-
+            document.cookie = `UserId=` + encodeURIComponent(res.data.pk);
+            document.cookie = `UserName=` + encodeURIComponent(res.data.username);
+            //最後にログイン状態をtrueに
+            this.setState({ login: true });
           })
       })
   };
 
   render() {
-
     const classes = makeStyles(theme => ({
       paper: {
         marginTop: theme.spacing(8),
@@ -118,11 +115,9 @@ class LoginApp extends Component {
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <div className={classes.paper}>
-          <div className='loginlogo'>
+          <div className='lockoutlogo'>
             <Avatar className={classes.avatar}>
-
               <LockOutlinedIcon />
-
             </Avatar>
           </div>
           <Typography component="h1" variant="h5">
@@ -172,12 +167,12 @@ class LoginApp extends Component {
           </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to={"/#"} variant="body2">
                   Forgot password?
               </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to={`/signup`} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -190,7 +185,6 @@ class LoginApp extends Component {
       </Container>
     )
   }
-
 }
 
 

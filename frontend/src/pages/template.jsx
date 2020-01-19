@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
+import axios from 'axios';
+
+import TextField from '@material-ui/core/TextField';
 
 import { getcookie } from '../components/get_cookie_function';
-
+import { HomeButton } from '../components/home_button';
+import { SaveButton } from '../components/save_button';
 
 //create処理
 class Template extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      title: 'テンプレート',
       body: '',
     };
   };
@@ -55,16 +56,15 @@ class Template extends Component {
       <div className='create_box'>
         <div className='form_box'>
           <form onSubmit={this.handleSubmit}>
-            Title：
-         <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-            bodyー後々消すー:
+            <TextField name="title" type="text" value={this.state.title} onChange={this.handleChange} required id="standard-required" label="Title" />
+            body-後々消す->
          <input name="body" value={this.state.body} onChange={this.handleChange} />
             {/* type="hidden"  bodyは後々隠す*/}
-            <Button type="submit" ><p className='save_button'>保存-未実装-</p></Button>
+            <SaveButton />
           </form>
         </div>
         <div className='return_box'>
-          <Button className='return_button'><Link to={`/read`}><p className='return_button'>一覧へ戻る</p></Link></Button>
+          <HomeButton />
         </div>
       </div >
     );

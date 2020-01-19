@@ -7,8 +7,9 @@ import { MyNode } from "./MyNode";
 import DockPlugin from 'rete-dock-plugin';
 import CommentPlugin from 'rete-comment-plugin';
 // import ContextMenuPlugin from 'rete-context-menu-plugin';
-
-
+import KeyboardPlugin from 'rete-keyboard-plugin';
+import HistoryPlugin from 'rete-history-plugin';
+import MinimapPlugin from 'rete-minimap-plugin';
 
 
 var numSocket = new Rete.Socket("Number value");
@@ -43,7 +44,6 @@ class NumControl extends Rete.Control {
         this.emitter.trigger("process");
       }
     };
-
   }
 
   setValue(val) {
@@ -59,13 +59,13 @@ class NumControl extends Rete.Control {
 class NumComponent extends Rete.Component {
   constructor() {
     //タイトル
-    super("出力BOX");
+    super("数字");
   }
 
   //タイトル以外を表示
   builder(node) {
     //output1ソケットを作成
-    var out1 = new Rete.Output("num", "出力→", numSocket);
+    var out1 = new Rete.Output("num", "出力", numSocket);
     //インプット欄を作成
     var ctrl = new NumControl(this.editor, "num", node);
 
@@ -87,18 +87,17 @@ class NumComponent extends Rete.Component {
 class AddComponent extends Rete.Component {
   constructor() {
     //タイトル
-    super("合計BOX");
+    super("合計");
     this.data.component = MyNode; // optional
   }
 
   builder(node) {
     //input1ソケットを作成
-    var inp1 = new Rete.Input("num1", "→入力1", numSocket);
+    var inp1 = new Rete.Input("num1", "入力1", numSocket);
     //input2ソケット
-    var inp2 = new Rete.Input("num2", "→入力2", numSocket);
+    var inp2 = new Rete.Input("num2", "入力2", numSocket);
     //output1ソケット
-    var out = new Rete.Output("num", "出力→", numSocket);
-
+    var out = new Rete.Output("num", "出力", numSocket);
 
     inp1.addControl(new NumControl(this.editor, "num1", node));
     inp2.addControl(new NumControl(this.editor, "num2", node));
@@ -131,17 +130,17 @@ class AddComponent extends Rete.Component {
 class MultiComponent extends Rete.Component {
   constructor() {
     //タイトル
-    super("掛け算BOX");
+    super("掛け算");
     this.data.component = MyNode; // optional
   }
 
   builder(node) {
     //input1ソケットを作成
-    var inp1 = new Rete.Input("num1", "→入力1", numSocket);
+    var inp1 = new Rete.Input("num1", "入力1", numSocket);
     //input2ソケット
-    var inp2 = new Rete.Input("num2", "→入力2", numSocket);
+    var inp2 = new Rete.Input("num2", "入力2", numSocket);
     //output1ソケット
-    var out = new Rete.Output("num", "出力→", numSocket);
+    var out = new Rete.Output("num", "出力", numSocket);
 
     inp1.addControl(new NumControl(this.editor, "num1", node));
     inp2.addControl(new NumControl(this.editor, "num2", node));
@@ -173,14 +172,15 @@ class MultiComponent extends Rete.Component {
 
 
 //　　各BOX設定
-export async function createEditor(container) {
+// export async function createEditor(container, log) {
+export const createEditor = async (container) => {
   var components = [new NumComponent(), new AddComponent(), new MultiComponent()];
-
 
   //　プラグインの設定
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);
   editor.use(ReactRenderPlugin);
+  editor.use(KeyboardPlugin);
   editor.use(DockPlugin, {
     container: document.querySelector('.dock'),
     itemClass: 'dock-item', // default: dock-item 
@@ -189,16 +189,24 @@ export async function createEditor(container) {
   editor.use(CommentPlugin, {
     margin: 10 // indent for new frame comments by default 30 (px)
   });
+  editor.use(AreaPlugin, {
+    background: true,
+    snap: false,
+    scaleExtent: { min: 0.3, max: 0.7 },
+    translateExtent: { width: 5000, height: 4000 }
+  });
+  editor.use(HistoryPlugin, { keyboard: true });
+  editor.use(MinimapPlugin);
 
   var engine = new Rete.Engine("demo@0.1.0");
 
   components.map(c => {
     editor.register(c);
     engine.register(c);
+    return (c);
   });
 
   //　初期配置の設定
-
   //作成したボックスを変数に代入
   var n1 = await components[0].createNode({ num: 2 });
   var n2 = await components[0].createNode({ num: 3 });
@@ -225,34 +233,37 @@ export async function createEditor(container) {
 
 
   //　最初の線の繋がりの設定
-
   editor.connect(n1.outputs.get("num"), add.inputs.get("num1"));
   editor.connect(n2.outputs.get("num"), add.inputs.get("num2"));
   //追加４
   editor.connect(n3.outputs.get("num"), add.inputs.get("num3"));
 
-  //keysownEvents
 
-  editor.on(
-    "keydown",
-    async (e) => {
-      if (e.code === "Backspace" || e.code === "Delete") {//deleteNode
-        editor.selected.each(n => editor.removeNode(n));
-      } else if (e.code === "KeyS") {//Json保存
-        // await engine.abort();
-        await engine.process(editor.toJSON());
-        const data = await editor.toJSON();
+  editor.on('keydown', e => {
+    switch (e.code) {
+      case "Backspace":
+        if (editor.selected.list !== '') {
+          editor.selected.each(n => editor.removeNode(n));
+          editor.selected.list = []
+        }
+        break;
+      case "KeyS":
+        console.log(editor);
+        // console.log(manager)
+        engine.process(editor.toJSON());
+        const data = editor.toJSON();
         localStorage.setItem('json', JSON.stringify(data));
-        console.log(data);
-      } else if (e.code === "KeyR") {//Json取得及び読み込み
+        break;
+      case "KeyR":
         var json = localStorage.getItem('json');
         // console.log(json);
         json = JSON.parse(json);
         // console.log(json);
-        await editor.fromJSON(json);
-      }
+        editor.fromJSON(json);
+        break;
+      default: break;
     }
-  );
+  });
 
   //Jsonへの出力。これがないと適時自動計算してくれない。。。
   editor.on(
@@ -267,6 +278,10 @@ export async function createEditor(container) {
   editor.view.resize();
   editor.trigger("process");
   AreaPlugin.zoomAt(editor, editor.nodes);
+  editor.trigger('undo');
+  editor.trigger('redo');
+
+  // return (<h1>AAAAA</h1>);
 
 }
 

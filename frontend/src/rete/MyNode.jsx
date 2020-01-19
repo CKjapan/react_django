@@ -9,7 +9,7 @@ export class MyNode extends Node {
     const { outputs, controls, inputs, selected } = this.state;
 
     return (
-      <div className={`node ${selected}`} >
+      <div className={`node ${node.name}${selected}`} >
         {/* style={{ background: "pink" }} */}
         <div className="title">
           {""} {node.name} {""}

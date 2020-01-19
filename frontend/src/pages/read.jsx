@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+
+import Button from '@material-ui/core/Button';
+
 import DeleteButton from '../components/delete_button';
-// import Detailbody from '../components/detail_button';
 import { getcookie } from '../components/get_cookie_function';
 import DetailButton from '../components/detail_button';
 
@@ -46,14 +49,14 @@ class Read extends Component {
     const list = this.state.datalist.map((datalist) => {
       return (
         <tr className='create_list' key={datalist.id}>
-          <td>
-            <DetailButton id={datalist.id} />
+          <td style={{ width: '400px' }}>
+            <a>{datalist.title}</a>
           </td>
-          <td>
+          <td style={{ width: '40px' }}>
             <DeleteButton id={datalist.id} getdb={this.getdb} />
           </td>
-          <td>
-            {datalist.title}
+          <td style={{ width: '40px' }}>
+            <DetailButton id={datalist.id} />
           </td>
         </tr>
       );
@@ -61,20 +64,17 @@ class Read extends Component {
 
     return (
       <div className='read_box'>
-        <div className='create_list_box'>
-          <p>新規プロジェクトから作成</p>
-          <ul><li className='create_list'><Link to={`/create/new`}>作成</Link></li></ul>
 
-          <p>標準テンプレートから作成</p>
-          <ul>
-            <li className='create_list'><Link to={`/template/1`}>テンプレート1</Link></li>
-            <li className='create_list'><Link to={`/template/2`}>テンプレート2</Link></li>
-            <li className='create_list'><Link to={`/template/3`}>テンプレート3</Link></li>
-          </ul>
+        <div className='create_list_box'>
+          <Link to={`/create/new`}><Button variant="contained" color="primary">新規作成</Button></Link>
+          <p>テンプレートから作成</p>
+          <Link to={`/template/1`}><Button className='template_button' variant="contained">テンプレート1</Button></Link>
+          <Link to={`/template/2`}><Button className='template_button' variant="contained">テンプレート2</Button></Link>
+          <Link to={`/template/3`}><Button className='template_button' variant="contained">テンプレート3</Button></Link>
         </div>
 
         <div className='detail_list_box'>
-          <p>保存済のプロジェクトの呼び出し</p>
+          <p>保存したプロジェクト</p>
           <table><tbody>{list}</tbody></table>
         </div>
       </div>
